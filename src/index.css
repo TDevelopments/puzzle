@@ -282,8 +282,8 @@ html,body{
     padding-top: 145px;
 }
 .game{
-	background-color: #454C53;
-	border: 3px solid #fff;
+	background-color: #111;
+	border: 3px solid #ec0b36;
 	border-radius: 20px;
 	padding: 5% 0;
 	margin: 0 10%;
@@ -291,7 +291,7 @@ html,body{
 .content-game {
 	z-index: 1000;
 	position: relative;
-	margin-top: 5%;
+	margin-top: 3%;
 }
 
 .button-pixel{
@@ -343,5 +343,61 @@ input[type='radio']:focus {
 	100%
 	{
 		background-position-y: -480px;
+	}
+}
+
+.content-final-message{
+	font-family: consolas;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.wavy{
+	position: relative;
+	-webkit-box-reflect: below -12px linear-gradient(transparent, rgb(0, 0, 0,0.2));
+}
+.wavy span{
+	position: relative;
+	display: inline-block;
+	color: #fff;
+	font-size: 2em;
+	text-transform: uppercase;
+	animation: animatetext 1s ease-in-out infinite;
+	animation-delay: calc(0.1s * var(--i));
+	font-size: 100px;
+}
+
+
+.leter1{
+	--i:1
+}
+.leter2{
+	--i:2
+}
+.leter3{
+	--i:3
+}
+.leter4{
+	--i:4
+}
+.leter5{
+	--i:5
+}
+.leter6{
+	--i:6
+}
+.leter7{
+	--i:7
+}
+
+@keyframes animatetext {
+	0%{
+		transform: translateY(0px);
+	}
+	20%{
+		transform: translateY(-20px);
+	}
+	40%,100%{
+		transform: translateY(0px);
 	}
 }

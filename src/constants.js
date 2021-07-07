@@ -247,15 +247,15 @@ export const questionsAnswers = [
         '¿CUAL ES EL REFLEJO EN EL CUAL PODEMOS SOSTENER AL NIÑO EN UNA SUSPENSION VERTICAL?',
       options: [
         {
-          id: 1,
+          id: '1',
           name: 'Paracaídas descendentes de m.i',
         },
         {
-          id: 2,
+          id: '2',
           name: 'Respuesta de landau',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Enderezamiento de cabeza',
         },
       ],
@@ -265,15 +265,15 @@ export const questionsAnswers = [
       question: 'MARCA EL CRITERIO DE PROGRESIÓN A 4 PUNTOS',
       options: [
         {
-          id: 1,
+          id: '1',
           name: 'Ponga al niño boca abajo',
         },
         {
-          id: 2,
+          id: '2',
           name: 'Logra una posición de pie sin apoyo a los 14 meses',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Evalúa la categoría de control postural',
         },
       ],
@@ -283,19 +283,45 @@ export const questionsAnswers = [
       question: 'CUAL NO ES UNA PROGRESION A 4 PUNTOS',
       options: [
         {
-          id: 1,
+          id: '1',
           name: 'Normalmente, el niño de 3 meses de edad se sostendrá en los antebrazos mientras está en posición prona',
         },
         {
-          id: 2,
+          id: '2',
           name: '6 meses, el niño empujara hacia arriba con los brazos extendidos',
         },
         {
-          id: 3,
+          id: '3',
           name: 'Suspenda al niño en una posición prona proporcionando apoyo en el abdomen alto con la palma de su mano',
         },
       ],
       answer: '3',
     },
   ],
+]
+export const alertC = [
+  {
+    id: '1',
+    open: false,
+    correct: false,
+    messageI:
+      'Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador.',
+    messageC: 'Tu respuesta fue correcta.',
+  },
+  {
+    id: '2',
+    open: false,
+    correct: false,
+    messageI:
+      'Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador.',
+    messageC: 'Tu respuesta fue correcta.',
+  },
+  {
+    id: '3',
+    open: false,
+    correct: false,
+    messageI:
+      'Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador.',
+    messageC: 'Tu respuesta fue correcta.',
+  },
 ]
