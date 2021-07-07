@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "/puzzle/static/css/main.1fe1d494.chunk.css",
+    "main.js": "/puzzle/static/js/main.8d3c94f8.chunk.js",
+    "main.js.map": "/puzzle/static/js/main.8d3c94f8.chunk.js.map",
+    "runtime-main.js": "/puzzle/static/js/runtime-main.9c5488ec.js",
+    "runtime-main.js.map": "/puzzle/static/js/runtime-main.9c5488ec.js.map",
+    "static/css/2.1d9aac69.chunk.css": "/puzzle/static/css/2.1d9aac69.chunk.css",
+    "static/js/2.430328c1.chunk.js": "/puzzle/static/js/2.430328c1.chunk.js",
+    "static/js/2.430328c1.chunk.js.map": "/puzzle/static/js/2.430328c1.chunk.js.map",
+    "index.html": "/puzzle/index.html",
+    "static/css/2.1d9aac69.chunk.css.map": "/puzzle/static/css/2.1d9aac69.chunk.css.map",
+    "static/css/main.1fe1d494.chunk.css.map": "/puzzle/static/css/main.1fe1d494.chunk.css.map",
+    "static/js/2.430328c1.chunk.js.LICENSE.txt": "/puzzle/static/js/2.430328c1.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/puzzle/static/media/pixel.0cdf3109.png",
+    "static/media/nivel1.abc713c5.jpg": "/puzzle/static/media/nivel1.abc713c5.jpg",
+    "static/media/nivel2.3af3aae0.jpg": "/puzzle/static/media/nivel2.3af3aae0.jpg",
+    "static/media/nivel3.12e64965.jpg": "/puzzle/static/media/nivel3.12e64965.jpg",
+    "static/media/nivel4.5ad72156.jpg": "/puzzle/static/media/nivel4.5ad72156.jpg",
+    "static/media/user.685361b0.png": "/puzzle/static/media/user.685361b0.png",
+    "static/media/yoda.4b73edca.gif": "/puzzle/static/media/yoda.4b73edca.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9c5488ec.js",
+    "static/css/2.1d9aac69.chunk.css",
+    "static/js/2.430328c1.chunk.js",
+    "static/css/main.1fe1d494.chunk.css",
+    "static/js/main.8d3c94f8.chunk.js"
+  ]
+}
