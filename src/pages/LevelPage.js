@@ -21,6 +21,7 @@ import {
   Alert,
 } from 'reactstrap'
 import { information, questionsAnswers } from '../constants'
+import { useLocation } from 'react-router-dom'
 
 export default function LevelPage() {
   const [level, setLevel] = useState(2)
@@ -40,6 +41,8 @@ export default function LevelPage() {
   const [showAlert, setShowAlert] = useState(false)
   const [finalGame, setFinalGame] = useState(false)
   const [showButton, setShowButton] = useState(true)
+  const [positionUser, setPositionUser] = useState({})
+  const location = useLocation()
 
   useEffect(() => {
     if (withWindow > 390 && withWindow < 650) {
@@ -79,6 +82,7 @@ export default function LevelPage() {
     setShowButton(false)
     if (cont === 3) {
       timer.current.pauseTimer()
+      submitTime()
       setTimeout(function () {
         setShowModalQuestions(false)
         setFinalGame(true)
@@ -128,6 +132,36 @@ export default function LevelPage() {
 
   const onChangeOption = (e) => {
     setSelectOption(e.target.value)
+  }
+
+  function submitTime() {
+    console.log('guardando')
+    const time = parseFloat(timer.current.state.actualTime).toFixed(2) * 1
+    const _id = location.state._id
+    console.log('id', _id, time)
+    window.icAPI.callService(
+      'updateUserById',
+      {
+        _id,
+        time,
+      },
+      (error, response) => {
+        console.log(response)
+        getPosition()
+      }
+    )
+  }
+
+  function getPosition() {
+    const _id = location.state._id
+    window.icAPI.callService('getAllUsers', {}, (error, response) => {
+      const users = response.responseJSON
+      users.map((user, i) => {
+        if (user._id === _id) {
+          setPositionUser({ user, i })
+        }
+      })
+    })
   }
 
   return (
@@ -260,15 +294,30 @@ export default function LevelPage() {
             </div>
           )}
           {finalGame === true && (
-            <div className="content-final-message">
-              <div className="wavy">
-                <span className="leter1">M</span>
-                <span className="leter2">I</span>
-                <span className="leter3">L</span>
-                <span className="leter4">L</span>
-                <span className="leter5">A</span>
-                <span className="leter6">N</span>
-                <span className="leter7">I</span>
+            <div>
+              <div className="content-final-message">
+                <div className="wavy">
+                  <span className="leter1">M</span>
+                  <span className="leter2">I</span>
+                  <span className="leter3">L</span>
+                  <span className="leter4">L</span>
+                  <span className="leter5">A</span>
+                  <span className="leter6">N</span>
+                  <span className="leter7">I</span>
+                </div>
+              </div>
+              <div
+                className="content-final-message"
+                style={{
+                  color: '#fff',
+                }}
+              >
+                <div className="mr-2">Tu ranking es</div>
+                <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
+                  <span class=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
+                    {positionUser.i + 1}
+                  </span>
+                </div>
               </div>
             </div>
           )}

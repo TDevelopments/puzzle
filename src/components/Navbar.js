@@ -73,33 +73,20 @@ export default function Navbar() {
                       </Link>
                     </li>
                     <li className="nav-item">
-                      <a className="nav-link" href="lottery.html">
+                      <Link className="nav-link" to="/about-us">
                         SOBRE NOSOTROS
                         <div className="mr-hover-effect"></div>
-                      </a>
-                    </li>
-                    <li className="nav-item">
-                      <a className="nav-link" href="tournaments.html">
-                        JUGAR
-                        <div className="mr-hover-effect"></div>
-                      </a>
-                    </li>
-
-                    <li className="nav-item">
-                      <a className="nav-link" href="contact.html">
-                        CONTACTO
-                        <div className="mr-hover-effect"></div>
-                      </a>
+                      </Link>
                     </li>
                   </ul>
-                  <a
-                    href="/"
+                  <Link
+                    to="/"
                     className="mybtn1"
                     data-toggle="modal"
                     data-target="#signin"
                   >
                     EMPEZAR
-                  </a>
+                  </Link>
                 </div>
               </nav>
             </div>

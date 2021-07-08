@@ -205,8 +205,7 @@ export default function HomePage() {
                       {podiumUsers.map((user, i) => (
                         <div
                           key={user._id}
-                          class="mt-8 flex px-4 py-4 justify-between bg-white
-				dark:bg-gray-600 shadow-xl rounded-lg cursor-pointer"
+                          class="mt-8 flex px-4 py-4 justify-between bg-white dark:bg-gray-600 shadow-xl rounded-lg cursor-pointer"
                         >
                           <div class="flex justify-between">
                             <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
@@ -215,19 +214,13 @@ export default function HomePage() {
                               </span>
                             </div>
 
-                            <div
-                              class="ml-6 flex flex-col capitalize text-gray-600
-						dark:text-gray-400"
-                            >
+                            <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
                               <span>Nombre</span>
                               <span class="mt-2 text-black dark:text-gray-200">
                                 {user.name}
                               </span>
                             </div>
-                            <div
-                              class="ml-6 flex flex-col capitalize text-gray-600
-						dark:text-gray-400"
-                            >
+                            <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
                               <span>Carrera</span>
                               <span class="mt-2 text-black dark:text-gray-200">
                                 {user.race}
@@ -235,13 +228,10 @@ export default function HomePage() {
                             </div>
                           </div>
                           <div class="flex">
-                            <div
-                              class="mr-8 flex flex-col capitalize text-gray-600
-						dark:text-gray-400"
-                            >
+                            <div class="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
                               <span>Tiempo record</span>
                               <span class="mt-2 text-green-400 dark:text-green-200">
-                                {format(user.time)}
+                                {user.time} s
                               </span>
                             </div>
                           </div>
