@@ -5,6 +5,9 @@ import level2 from "../assets/images/nivel2.jpg";
 import level3 from "../assets/images/nivel3.jpg";
 import level4 from "../assets/images/nivel4.jpg";
 import yoda from "../assets/images/yoda.gif";
+import bear from "../assets/images/bear.gif";
+import tentacle from "../assets/images/tentacles.gif";
+import human from "../assets/images/human.gif";
 import Timer from "../components/Timer";
 import {
   Button,
@@ -54,7 +57,8 @@ export default function LevelPage() {
     if (withWindow > 1200 && withWindow < 1400) {
       setSize(300);
     }
-  });
+    shuffle();
+  }, []);
 
   const verify = () => {
     setShowButton(true);
@@ -134,11 +138,26 @@ export default function LevelPage() {
     setSelectOption(e.target.value);
   };
 
+  function shuffle() {
+    let arr = questionA;
+    let i, j, k, temp;
+    for (k = 0; k < arr.length - 1; k++) {
+      for (i = arr[k].length - 1; i > 0; i--) {
+        console.log();
+        j = Math.floor(Math.random() * (i + 1));
+        temp = arr[k][i];
+        arr[k][i] = arr[k][j];
+        arr[k][j] = temp;
+      }
+    }
+    setQuestionA(arr);
+    console.log(questionA);
+  }
+
   function submitTime() {
     console.log("guardando");
     const time = parseFloat(timer.current.state.actualTime).toFixed(2) * 1;
     const _id = location.state._id;
-    console.log("id", _id, time);
     window.icAPI.callService(
       "updateUserById",
       {
@@ -312,7 +331,7 @@ export default function LevelPage() {
                   color: "#fff",
                 }}
               >
-                <div className="mr-2">Tu ranking es</div>
+                <div className="mr-5">Tu ranking es</div>
                 <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
                   <span class=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
                     {positionUser.i + 1}
@@ -348,7 +367,18 @@ export default function LevelPage() {
                 padding: 0,
               }}
             >
-              <CardImg top width="100%" src={yoda} alt="Card image cap" />
+              {cont === 0 && (
+                <CardImg top width="100%" src={yoda} alt="Card image cap" />
+              )}
+              {cont === 1 && (
+                <CardImg top width="100%" src={human} alt="Card image cap" />
+              )}
+              {cont === 2 && (
+                <CardImg top width="100%" src={bear} alt="Card image cap" />
+              )}
+              {cont === 3 && (
+                <CardImg top width="100%" src={tentacle} alt="Card image cap" />
+              )}
             </Col>
             {cont < 4 && (
               <Col
@@ -428,7 +458,18 @@ export default function LevelPage() {
         >
           <Row>
             <Col xs="12" sm="12" md="6">
-              <CardImg top width="100%" src={yoda} alt="Card image cap" />
+              {cont === 0 && (
+                <CardImg top width="100%" src={yoda} alt="Card image cap" />
+              )}
+              {cont === 1 && (
+                <CardImg top width="100%" src={human} alt="Card image cap" />
+              )}
+              {cont === 2 && (
+                <CardImg top width="100%" src={bear} alt="Card image cap" />
+              )}
+              {cont === 3 && (
+                <CardImg top width="100%" src={tentacle} alt="Card image cap" />
+              )}
             </Col>
             {cont < 4 && (
               <Col
