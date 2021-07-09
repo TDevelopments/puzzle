@@ -312,7 +312,7 @@ export default function LevelPage() {
                   color: '#fff',
                 }}
               >
-                <div className="mr-2">Tu ranking es</div>
+                <div className="mr-5">Tu ranking es</div>
                 <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
                   <span class=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
                     {positionUser.i + 1}

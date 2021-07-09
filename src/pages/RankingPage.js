@@ -31,7 +31,7 @@ export default function RankingPage() {
           <div className="col-12">
             <div
               className="p-6 mb-3 mt-3 rounded-lg shadow-lg bg-gradient-to-r from-yellow-800 to-yellow-400"
-              style={{ height: '55%', minHeight: '400px', overflow: 'auto' }}
+              style={{ height: '100%', minHeight: '400px', overflow: 'auto' }}
             >
               <h2 className="text-2xl text-center font-bold mb-2 ">Ranking</h2>
               <p className="text-center">Los mejores jugadores</p>
