@@ -1,11 +1,11 @@
-import { useEffect, useState, useRef } from 'react'
-import Puzzle from '../components/Puzzle'
-import level1 from '../assets/images/nivel1.jpg'
-import level2 from '../assets/images/nivel2.jpg'
-import level3 from '../assets/images/nivel3.jpg'
-import level4 from '../assets/images/nivel4.jpg'
-import yoda from '../assets/images/yoda.gif'
-import Timer from '../components/Timer'
+import { useEffect, useState, useRef } from "react";
+import Puzzle from "../components/Puzzle";
+import level1 from "../assets/images/nivel1.jpg";
+import level2 from "../assets/images/nivel2.jpg";
+import level3 from "../assets/images/nivel3.jpg";
+import level4 from "../assets/images/nivel4.jpg";
+import yoda from "../assets/images/yoda.gif";
+import Timer from "../components/Timer";
 import {
   Button,
   Modal,
@@ -19,154 +19,154 @@ import {
   Col,
   Row,
   Alert,
-} from 'reactstrap'
-import { information, questionsAnswers } from '../constants'
-import { useLocation } from 'react-router-dom'
+} from "reactstrap";
+import { information, questionsAnswers } from "../constants";
+import { useLocation } from "react-router-dom";
 
 export default function LevelPage() {
-  const [level, setLevel] = useState(2)
-  const [cont, setCont] = useState(0)
-  const [contInformation, setContInformation] = useState(0)
-  const [showModalInformation, setShowModalInformation] = useState(false)
-  const [showModalQuestions, setShowModalQuestions] = useState(false)
-  const [next, setNext] = useState(true)
-  const [qa] = useState(information)
-  const timer = useRef(null)
-  const withWindow = window.innerWidth
-  const [size, setSize] = useState(500)
-  const [questionA, setQuestionA] = useState(questionsAnswers)
-  const [contQuestion, setContQuestion] = useState(0)
-  const [selectOption, setSelectOption] = useState('')
-  const [answerVer, setAnswerVer] = useState('false')
-  const [showAlert, setShowAlert] = useState(false)
-  const [finalGame, setFinalGame] = useState(false)
-  const [showButton, setShowButton] = useState(true)
-  const [positionUser, setPositionUser] = useState({})
-  const location = useLocation()
+  const [level, setLevel] = useState(2);
+  const [cont, setCont] = useState(0);
+  const [contInformation, setContInformation] = useState(0);
+  const [showModalInformation, setShowModalInformation] = useState(false);
+  const [showModalQuestions, setShowModalQuestions] = useState(false);
+  const [next, setNext] = useState(true);
+  const [qa] = useState(information);
+  const timer = useRef(null);
+  const withWindow = window.innerWidth;
+  const [size, setSize] = useState(500);
+  const [questionA, setQuestionA] = useState(questionsAnswers);
+  const [contQuestion, setContQuestion] = useState(0);
+  const [selectOption, setSelectOption] = useState("");
+  const [answerVer, setAnswerVer] = useState("false");
+  const [showAlert, setShowAlert] = useState(false);
+  const [finalGame, setFinalGame] = useState(false);
+  const [showButton, setShowButton] = useState(true);
+  const [positionUser, setPositionUser] = useState({});
+  const location = useLocation();
 
   useEffect(() => {
     if (withWindow > 390 && withWindow < 650) {
-      setSize(300)
+      setSize(300);
     }
     if (withWindow > 650 && withWindow < 1200) {
-      setSize(350)
+      setSize(350);
     }
     if (withWindow > 1200 && withWindow < 1400) {
-      setSize(300)
+      setSize(300);
     }
-  })
+  });
 
   const verify = () => {
-    setShowButton(true)
-    setLevel(level + 1)
-    setShowModalInformation(true)
-    setNext(false)
-    timer.current.pauseTimer()
-  }
+    setShowButton(true);
+    setLevel(level + 1);
+    setShowModalInformation(true);
+    setNext(false);
+    timer.current.pauseTimer();
+  };
 
   const antInformation = () => {
-    setContInformation(contInformation - 1)
-  }
+    setContInformation(contInformation - 1);
+  };
 
   const nextLevel = () => {
     if (questionA[cont][contQuestion].answer !== selectOption) {
-      timer.current.state.actualTime = timer.current.state.actualTime + 30
-      setShowAlert(true)
+      timer.current.state.actualTime = timer.current.state.actualTime + 30;
+      setShowAlert(true);
       setAnswerVer(
-        'Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador'
-      )
+        "Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador"
+      );
     } else {
-      setAnswerVer('Tu respuesta fue correcta.')
-      setShowAlert(true)
+      setAnswerVer("Tu respuesta fue correcta.");
+      setShowAlert(true);
     }
-    setShowButton(false)
+    setShowButton(false);
     if (cont === 3) {
-      timer.current.pauseTimer()
-      submitTime()
+      timer.current.pauseTimer();
+      submitTime();
       setTimeout(function () {
-        setShowModalQuestions(false)
-        setFinalGame(true)
-        setShowAlert(false)
-      }, 2000)
+        setShowModalQuestions(false);
+        setFinalGame(true);
+        setShowAlert(false);
+      }, 2000);
     } else {
-      timer.current.pauseTimer()
-      setNext(true)
+      timer.current.pauseTimer();
+      setNext(true);
       setTimeout(function () {
-        setCont(cont + 1)
-        setContQuestion(0)
-        setContInformation(0)
-        setShowAlert(false)
-        timer.current.initTimer()
-        setShowModalQuestions(false)
-      }, 2000)
+        setCont(cont + 1);
+        setContQuestion(0);
+        setContInformation(0);
+        setShowAlert(false);
+        timer.current.initTimer();
+        setShowModalQuestions(false);
+      }, 2000);
     }
-  }
+  };
 
   const nextContInformation = () => {
-    setContInformation(contInformation + 1)
-    setShowModalQuestions(false)
-  }
+    setContInformation(contInformation + 1);
+    setShowModalQuestions(false);
+  };
 
   const questions = () => {
-    timer.current.initTimer()
-    setShowModalInformation(false)
-    setShowModalQuestions(true)
-  }
+    timer.current.initTimer();
+    setShowModalInformation(false);
+    setShowModalQuestions(true);
+  };
 
   const nextQuestion = () => {
     if (questionA[cont][contQuestion].answer !== selectOption) {
-      timer.current.state.actualTime = timer.current.state.actualTime + 30
-      setShowAlert(true)
+      timer.current.state.actualTime = timer.current.state.actualTime + 30;
+      setShowAlert(true);
       setAnswerVer(
-        'Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador'
-      )
+        "Tu respuesta fue incorrecta, se te penalizara con 30 segundos en tu marcador"
+      );
     } else {
-      setAnswerVer('Tu respuesta fue correcta.')
-      setShowAlert(true)
+      setAnswerVer("Tu respuesta fue correcta.");
+      setShowAlert(true);
     }
     setTimeout(function () {
-      setShowAlert(false)
-    }, 2000)
-    setContQuestion(contQuestion + 1)
-  }
+      setShowAlert(false);
+    }, 2000);
+    setContQuestion(contQuestion + 1);
+  };
 
   const onChangeOption = (e) => {
-    setSelectOption(e.target.value)
-  }
+    setSelectOption(e.target.value);
+  };
 
   function submitTime() {
-    console.log('guardando')
-    const time = parseFloat(timer.current.state.actualTime).toFixed(2) * 1
-    const _id = location.state._id
-    console.log('id', _id, time)
+    console.log("guardando");
+    const time = parseFloat(timer.current.state.actualTime).toFixed(2) * 1;
+    const _id = location.state._id;
+    console.log("id", _id, time);
     window.icAPI.callService(
-      'updateUserById',
+      "updateUserById",
       {
         _id,
         time,
       },
       (error, response) => {
-        console.log(response)
-        getPosition()
+        console.log(response);
+        getPosition();
       }
-    )
+    );
   }
 
   function getPosition() {
-    const _id = location.state._id
-    window.icAPI.callService('getAllUsers', {}, (error, response) => {
-      const users = response.responseJSON
+    const _id = location.state._id;
+    window.icAPI.callService("getAllUsers", {}, (error, response) => {
+      const users = response.responseJSON;
       users.map((user, i) => {
         if (user._id === _id) {
-          setPositionUser({ user, i })
+          setPositionUser({ user, i });
         }
-      })
-    })
+      });
+    });
   }
 
   return (
     <div className="content-game">
-      <div className="d-flex justify-content-center game">
+      <div className="d-flex justify-content-center rounded-lg shadow-lg bg-gradient-to-r from-yellow-800 to-yellow-500 game">
         <div>
           <div className="my-auto">
             <Timer ref={timer} />
@@ -176,7 +176,7 @@ export default function LevelPage() {
             <div
               className="d-flex"
               style={{
-                padding: '0 10%',
+                padding: "0 10%",
               }}
             >
               {level === 2 && next ? (
@@ -235,7 +235,7 @@ export default function LevelPage() {
                   </Col>
                 </Row>
               ) : (
-                ''
+                ""
               )}
               {level === 4 && next ? (
                 <Row className="mx-3">
@@ -262,7 +262,7 @@ export default function LevelPage() {
                   </Col>
                 </Row>
               ) : (
-                ''
+                ""
               )}
               {level === 5 && next ? (
                 <Row className="mx-3">
@@ -289,7 +289,7 @@ export default function LevelPage() {
                   </Col>
                 </Row>
               ) : (
-                ''
+                ""
               )}
             </div>
           )}
@@ -309,7 +309,7 @@ export default function LevelPage() {
               <div
                 className="content-final-message"
                 style={{
-                  color: '#fff',
+                  color: "#fff",
                 }}
               >
                 <div className="mr-2">Tu ranking es</div>
@@ -332,8 +332,8 @@ export default function LevelPage() {
       >
         <div
           style={{
-            backgroundColor: '#111',
-            color: '#fff',
+            backgroundColor: "#111",
+            color: "#fff",
           }}
         >
           <Row>
@@ -342,9 +342,9 @@ export default function LevelPage() {
               sm="12"
               md="6"
               style={{
-                backgroundColor: '#284548',
-                display: 'flex',
-                alignContent: 'center',
+                backgroundColor: "#284548",
+                display: "flex",
+                alignContent: "center",
                 padding: 0,
               }}
             >
@@ -356,7 +356,7 @@ export default function LevelPage() {
                 sm="12"
                 md="6"
                 style={{
-                  backgroundColor: '#111',
+                  backgroundColor: "#111",
                 }}
               >
                 <CardBody>
@@ -368,9 +368,9 @@ export default function LevelPage() {
                   </CardSubtitle>
                   <div
                     style={{
-                      textAlign: 'justify',
-                      paddingRight: '10px',
-                      margin: '12% 0',
+                      textAlign: "justify",
+                      paddingRight: "10px",
+                      margin: "12% 0",
                     }}
                   >
                     <strong>Procedimiento</strong>
@@ -382,8 +382,8 @@ export default function LevelPage() {
                 </CardBody>
                 <div
                   style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
+                    display: "flex",
+                    justifyContent: "space-between",
                   }}
                 >
                   {contInformation !== 0 && (
@@ -404,7 +404,7 @@ export default function LevelPage() {
                       contInformation === 0 ? nextContInformation : questions
                     }
                   >
-                    {contInformation === 0 ? 'Siguiente' : 'Preguntas'}
+                    {contInformation === 0 ? "Siguiente" : "Preguntas"}
                   </Button>
                 </div>
               </Col>
@@ -421,9 +421,9 @@ export default function LevelPage() {
       >
         <div
           style={{
-            backgroundColor: '#111',
-            color: '#fff',
-            paddingRight: '20px',
+            backgroundColor: "#111",
+            color: "#fff",
+            paddingRight: "20px",
           }}
         >
           <Row>
@@ -450,8 +450,8 @@ export default function LevelPage() {
                   </CardSubtitle>
                   <div
                     style={{
-                      textAlign: 'justify',
-                      paddingRight: '10px',
+                      textAlign: "justify",
+                      paddingRight: "10px",
                     }}
                   >
                     <FormGroup tag="fieldset">
@@ -464,7 +464,7 @@ export default function LevelPage() {
                                 value={question.id}
                                 checked={selectOption === question.id}
                                 onChange={onChangeOption}
-                              />{' '}
+                              />{" "}
                               {question.name}
                             </Label>
                           </FormGroup>
@@ -475,8 +475,8 @@ export default function LevelPage() {
                 </CardBody>
                 <div
                   style={{
-                    display: 'flex',
-                    justifyContent: 'end',
+                    display: "flex",
+                    justifyContent: "end",
                   }}
                 >
                   {showButton === true && (
@@ -487,8 +487,8 @@ export default function LevelPage() {
                       onClick={contQuestion === 2 ? nextLevel : nextQuestion}
                     >
                       {contQuestion === 2
-                        ? 'Siguiente Nivel'
-                        : 'Siguente Pregunta'}
+                        ? "Siguiente Nivel"
+                        : "Siguente Pregunta"}
                     </Button>
                   )}
                 </div>
@@ -501,5 +501,5 @@ export default function LevelPage() {
         </div>
       </Modal>
     </div>
-  )
+  );
 }

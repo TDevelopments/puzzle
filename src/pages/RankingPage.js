@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import Fade from "react-reveal/Fade";
+import firstPlace from "../assets/images/firstPlace.png";
+import secondPlace from "../assets/images/secondPlace.png";
 
 export default function RankingPage() {
   const [userRaking, setUserRaking] = useState([]);
@@ -31,42 +33,52 @@ export default function RankingPage() {
           <div className="col-12">
             <div
               className="p-6 mb-3 mt-3 rounded-lg shadow-lg bg-gradient-to-r from-yellow-800 to-yellow-400"
-              style={{ height: "55%", overflow: "auto" }}
+              style={{ height: "700px", overflow: "auto" }}
             >
               <h2 className="text-2xl text-center font-bold mb-2 ">Ranking</h2>
               <p className="text-center">Los mejores jugadores</p>
               <div className="mt-8">
                 {userRaking.map((user, i) => (
-                  <div
-                    key={user._id}
-                    className="mt-8 flex px-4 py-4 justify-between bg-white dark:bg-gray-600 shadow-xl rounded-lg cursor-pointer"
-                  >
-                    <div className="flex justify-between">
-                      <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
-                        <span className=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
-                          {i + 1}
-                        </span>
-                      </div>
+                  <div className="">
+                    <div
+                      key={user._id}
+                      class={`top${i + 1} mt-8 flex ${
+                        i == 0 || i == 1 || i == 2 ? `px-3 py-3` : `px-4 py-4`
+                      } justify-between bg-white dark:bg-gray-600 shadow-xl`}
+                    >
+                      <div class="flex justify-between">
+                        <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
+                          {i == 0 ? (
+                            <span class=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
+                              <img src={firstPlace} alt="firstPlace" />
+                            </span>
+                          ) : (
+                            <span class="text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
+                              {i + 1}
+                            </span>
+                          )}
+                        </div>
 
-                      <div className="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
-                        <span>Nombre</span>
-                        <span className="mt-2 text-black dark:text-gray-200">
-                          {user.name}
-                        </span>
+                        <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
+                          <span>Nombre</span>
+                          <span class="mt-2 text-black dark:text-gray-200">
+                            {user.name}
+                          </span>
+                        </div>
+                        <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
+                          <span>Carrera</span>
+                          <span class="mt-2 text-black dark:text-gray-200">
+                            {user.race}
+                          </span>
+                        </div>
                       </div>
-                      <div className="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
-                        <span>Carrera</span>
-                        <span className="mt-2 text-black dark:text-gray-200">
-                          {user.race}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="flex">
-                      <div className="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
-                        <span>Tiempo record</span>
-                        <span className="mt-2 text-green-400 dark:text-green-200">
-                          {user.time} s
-                        </span>
+                      <div class="flex">
+                        <div class="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
+                          <span>Tiempo record</span>
+                          <span class="mt-2 text-green-400 dark:text-green-200">
+                            {user.time} s
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>

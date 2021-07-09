@@ -215,8 +215,10 @@ export default function HomePage() {
                         <div className="">
                           <div
                             key={user._id}
-                            class={`top${i + 1} mt-8 flex ${
-                              i == 0 ? `px-3 py-3` : `px-4 py-4`
+                            class={`top1 mt-8 flex ${
+                              i == 0 || i == 1 || i == 2
+                                ? `px-3 py-3`
+                                : `px-4 py-4`
                             } justify-between bg-white dark:bg-gray-600 shadow-xl`}
                           >
                             <div class="flex justify-between">

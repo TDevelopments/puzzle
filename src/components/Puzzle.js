@@ -1,8 +1,9 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import Cell from './Cell'
-import { HTML5Backend } from 'react-dnd-html5-backend'
-import { DndProvider } from 'react-dnd'
+import React from "react";
+import PropTypes from "prop-types";
+import Cell from "./Cell";
+import { HTML5Backend } from "react-dnd-html5-backend";
+import { DndProvider } from "react-dnd";
+import { Howl } from "howler";
 
 /**
  * Shuffles the passed array and returns a new one
@@ -11,66 +12,70 @@ import { DndProvider } from 'react-dnd'
  * @return {Array}
  */
 function shuffle(a) {
-  const b = a.slice()
+  const b = a.slice();
 
   for (let i = b.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1))
-    ;[b[i], b[j]] = [b[j], b[i]]
+    const j = Math.floor(Math.random() * (i + 1));
+    [b[i], b[j]] = [b[j], b[i]];
   }
-  return b
+  return b;
 }
 
 class Puzzle extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    const { level } = props
-    const cells = level * level
+    const { level } = props;
+    const cells = level * level;
 
-    this.state = { positions: [...Array(cells).keys()] }
+    this.state = { positions: [...Array(cells).keys()] };
+    this.sound = new Howl({
+      src: ["/media/button2.mp3"],
+    });
   }
 
   componentDidMount() {
-    const { positions } = this.state
+    const { positions } = this.state;
 
-    this.setState({ positions: shuffle(positions) })
+    this.setState({ positions: shuffle(positions) });
   }
 
   onSwap(sourcePosition, dropPosition) {
-    const oldPositions = this.state.positions.slice()
-    const newPositions = []
-    let done = true
-    let p = 0
+    this.sound.play();
+    const oldPositions = this.state.positions.slice();
+    const newPositions = [];
+    let done = true;
+    let p = 0;
 
     for (let i in oldPositions) {
-      let value = oldPositions[i]
-      let newValue = value
+      let value = oldPositions[i];
+      let newValue = value;
 
       if (value === sourcePosition) {
-        newValue = dropPosition
+        newValue = dropPosition;
       } else if (value === dropPosition) {
-        newValue = sourcePosition
+        newValue = sourcePosition;
       }
 
-      newPositions.push(newValue)
+      newPositions.push(newValue);
 
       if (newValue !== p) {
-        done = false
+        done = false;
       }
 
-      p = p + 1
+      p = p + 1;
     }
 
-    this.setState({ positions: newPositions })
+    this.setState({ positions: newPositions });
 
     if (done) {
-      this.props.onDone()
+      this.props.onDone();
     }
   }
 
   renderSquares() {
-    const { image, size, level } = this.props
-    const { positions } = this.state
+    const { image, size, level } = this.props;
+    const { positions } = this.state;
 
     const squares = positions.map((i) => {
       return (
@@ -82,21 +87,21 @@ class Puzzle extends React.Component {
           position={i}
           onSwap={this.onSwap.bind(this)}
         />
-      )
-    })
+      );
+    });
 
-    return squares
+    return squares;
   }
 
   render() {
-    const { size } = this.props
+    const { size } = this.props;
 
     return (
       <DndProvider backend={HTML5Backend}>
         <div
           style={{
-            display: 'flex',
-            flexWrap: 'wrap',
+            display: "flex",
+            flexWrap: "wrap",
             padding: 0,
             width: `${size}px`,
             height: `${size}px`,
@@ -106,7 +111,7 @@ class Puzzle extends React.Component {
           {this.renderSquares()}
         </div>
       </DndProvider>
-    )
+    );
   }
 }
 
@@ -115,12 +120,12 @@ Puzzle.propTypes = {
   size: PropTypes.number,
   level: PropTypes.number,
   onDone: PropTypes.func,
-}
+};
 
 Puzzle.defaultProps = {
   size: 300,
   level: 3,
   onDone: () => {},
-}
+};
 
-export default Puzzle
+export default Puzzle;

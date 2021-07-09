@@ -55,7 +55,7 @@ export default function AboutUsPage() {
           <div className="col-12">
             <div
               className="p-6 mb-3 mt-3 rounded-lg shadow-lg bg-gradient-to-r from-red-800 to-red-400"
-              style={{ height: "65%", overflow: "auto" }}
+              style={{ height: "700px", overflow: "auto" }}
             >
               <h2 className="text-2xl text-center font-bold mb-2 ">
                 Sobre nosotros
@@ -65,27 +65,32 @@ export default function AboutUsPage() {
                   Proyecto realizado por miembros del grupo 2
                 </span>
               </p>
-              <p className="text-center">Miembros</p>
-              <div className="mt-8">
-                <div class="shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
-                  <div class="flex flex-col w-full">
-                    <div class="w-full border-gray-100 rounded-t border-b hover:bg-white-100">
-                      <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
-                        <div class="w-6 flex flex-col items-center">
-                          <div class="flex relative w-5 h-5 bg-orange-500 justify-center items-center m-1 mr-2 w-4 h-4 mt-1 rounded-full ">
-                            <img class="rounded-full" alt="A" src={userImage} />{" "}
-                          </div>
+              <p className="text-center">Profesor</p>
+              <div class="shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
+                <div className="flex flex-col w-full">
+                  <div class="w-full border-gray-100 rounded-t border-b hover:bg-white-100">
+                    <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
+                      <div class="w-6 flex flex-col items-center">
+                        <div class="flex relative w-5 h-5 bg-orange-500 justify-center items-center m-1 mr-2 w-4 h-4 mt-1 rounded-full ">
+                          <img class="rounded-full" alt="A" src={userImage} />{" "}
                         </div>
-                        <div class="w-full items-center flex">
-                          <div class="mx-2 -mt-1  ">
-                            Elvis Michael Apaza Rojas
-                            <div class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500">
-                              Profesor
-                            </div>
+                      </div>
+                      <div class="w-full items-center flex">
+                        <div class="mx-2 -mt-1  ">
+                          Elvis Michael Apaza Rojas
+                          <div class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500">
+                            Profesor
                           </div>
                         </div>
                       </div>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <p className="text-center mt-3">Estudiantes</p>
+              <div className="">
+                <div class="shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
+                  <div class="flex flex-col w-full">
                     {members.map((member) => (
                       <div class="w-full border-gray-100 rounded-t border-b hover:bg-white-100">
                         <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100">
@@ -99,17 +104,10 @@ export default function AboutUsPage() {
                             </div>
                           </div>
                           <div class="w-full items-center flex">
-                            <div class="mx-2 -mt-1  w-1/2 ">
-                              {member}
+                            <div class="mx-2 -mt-1  ">
+                              <span>{member}</span>
                               <div class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500">
-                                Estudiante de fisioterapia y rahebilitación
-                              </div>
-                            </div>
-                            <div class="w-1/2 flex">
-                              <div class="flex justify-center items-center m-1 font-medium py-1 px-2 bg-white rounded-full text-teal-700 bg-teal-100 border border-teal-300 ">
-                                <div class="text-xs font-normal leading-none max-w-full flex-initial">
-                                  Grupo 2
-                                </div>
+                                Estudiante de fisioterapia y rehabilitación
                               </div>
                             </div>
                           </div>
