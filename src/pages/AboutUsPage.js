@@ -60,6 +60,11 @@ export default function AboutUsPage() {
               <h2 className="text-2xl text-center font-bold mb-2 ">
                 Sobre nosotros
               </h2>
+              <p className=" text-center m-3 ">
+                <span className="p-2 rounded-full border-solid border-1">
+                  Proyecto realizado por miembros del grupo 2
+                </span>
+              </p>
               <p className="text-center">Miembros</p>
               <div className="mt-8">
                 <div class="shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">

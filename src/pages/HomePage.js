@@ -85,7 +85,7 @@ export default function HomePage() {
   const [podiumUsers, setPodiumUsers] = useState([]);
   const history = useHistory();
   const { play, hasInteracted } = useAudio({
-    src: "/media/button.mp3",
+    src: "/media/button2.mp3",
     volume: 0.3,
   });
 

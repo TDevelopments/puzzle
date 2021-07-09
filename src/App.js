@@ -1,17 +1,17 @@
-import AppRouter from './routers/AppRouter'
-import useAudio from './hooks/useAudio'
-import { useEffect } from 'react'
+import AppRouter from "./routers/AppRouter";
+import useAudio from "./hooks/useAudio";
+import { useEffect } from "react";
 
 function App() {
   const { play, hasInteracted } = useAudio({
-    src: '/media/song2.mp3',
-    volume: 0.3,
+    src: "/media/song2.mp3",
+    volume: 0.2,
     loop: true,
-  })
+  });
 
   useEffect(() => {
-    play()
-  }, [hasInteracted])
+    play();
+  }, [hasInteracted]);
 
   return (
     <div>
@@ -32,7 +32,7 @@ function App() {
       
       */}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
