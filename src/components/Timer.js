@@ -12,6 +12,7 @@ class Timer extends Component {
     this.initTimer = this.initTimer.bind(this)
     this.clearTimer = this.clearTimer.bind(this)
     this.pauseTimer = this.pauseTimer.bind(this)
+    this.secondsToString = this.secondsToString.bind(this)
   }
 
   initTimer() {
@@ -20,8 +21,8 @@ class Timer extends Component {
       this.setState({ btnPlayPause: 'Play' })
     } else {
       this.counter = setInterval(() => {
-        this.setState({ actualTime: this.state.actualTime + 0.1 })
-      }, 100)
+        this.setState({ actualTime: this.state.actualTime + 1 })
+      }, 1000)
       this.setState({ btnPlayPause: 'Pause' })
     }
   }
@@ -37,6 +38,17 @@ class Timer extends Component {
     this.counter = null
     this.setState({ btnPlayPause: 'Play' })
   }
+
+  secondsToString(seconds) {
+    var hour = Math.floor(seconds / 3600)
+    hour = hour < 10 ? '0' + hour : hour
+    var minute = Math.floor((seconds / 60) % 60)
+    minute = minute < 10 ? '0' + minute : minute
+    var second = seconds % 60
+    second = second < 10 ? '0' + second : second
+    return hour + ':' + minute + ':' + second
+  }
+
   componentDidMount() {
     this.initTimer()
   }
@@ -46,7 +58,8 @@ class Timer extends Component {
       <div className="timer">
         <div className="time">
           <h2 className="text-center">
-            Tu tiempo es de {this.state.actualTime.toFixed(2)} s
+            Tu tiempo es de{' '}
+            {this.secondsToString(this.state.actualTime.toFixed(0))}
           </h2>
         </div>
         {/* <div className="btns">

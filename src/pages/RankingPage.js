@@ -1,30 +1,39 @@
-import { useState, useEffect } from "react";
-import Fade from "react-reveal/Fade";
-import firstPlace from "../assets/images/firstPlace.png";
-import secondPlace from "../assets/images/secondPlace.png";
+import { useState, useEffect } from 'react'
+import Fade from 'react-reveal/Fade'
+import firstPlace from '../assets/images/firstPlace.png'
+import secondPlace from '../assets/images/secondPlace.png'
 
 export default function RankingPage() {
-  const [userRaking, setUserRaking] = useState([]);
+  const [userRaking, setUserRaking] = useState([])
   useEffect(() => {
-    window.icAPI.callService("getAllUsers", {}, (error, response) => {
-      setUserRaking(response.responseJSON);
-      console.log(userRaking);
-    });
-  }, []);
+    window.icAPI.callService('getAllUsers', {}, (error, response) => {
+      setUserRaking(response.responseJSON)
+      console.log(userRaking)
+    })
+  }, [])
   function format(time) {
     // Hours, minutes and seconds
-    var hrs = ~~(time / 3600);
-    var mins = ~~((time % 3600) / 60);
-    var secs = ~~time % 60;
+    var hrs = ~~(time / 3600)
+    var mins = ~~((time % 3600) / 60)
+    var secs = ~~time % 60
 
     // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = "";
+    var ret = ''
     if (hrs > 0) {
-      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+      ret += '' + hrs + ':' + (mins < 10 ? '0' : '')
     }
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
+    ret += '' + mins + ':' + (secs < 10 ? '0' : '')
+    ret += '' + secs
+    return ret
+  }
+  function secondsToString(seconds) {
+    var hour = Math.floor(seconds / 3600)
+    hour = hour < 10 ? '0' + hour : hour
+    var minute = Math.floor((seconds / 60) % 60)
+    minute = minute < 10 ? '0' + minute : minute
+    var second = seconds % 60
+    second = second < 10 ? '0' + second : second
+    return hour + ':' + minute + ':' + second
   }
   return (
     <Fade bottom>
@@ -33,7 +42,7 @@ export default function RankingPage() {
           <div className="col-12">
             <div
               className="p-6 mb-3 mt-3 rounded-lg shadow-lg bg-gradient-to-r from-yellow-800 to-yellow-400"
-              style={{ height: "700px", overflow: "auto" }}
+              style={{ height: '700px', overflow: 'auto' }}
             >
               <h2 className="text-2xl text-center font-bold mb-2 ">Ranking</h2>
               <p className="text-center">Los mejores jugadores</p>
@@ -76,7 +85,7 @@ export default function RankingPage() {
                         <div class="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
                           <span>Tiempo record</span>
                           <span class="mt-2 text-green-400 dark:text-green-200">
-                            {user.time} s
+                            {secondsToString(user.time * 1)}
                           </span>
                         </div>
                       </div>
@@ -89,5 +98,5 @@ export default function RankingPage() {
         </div>
       </div>
     </Fade>
-  );
+  )
 }

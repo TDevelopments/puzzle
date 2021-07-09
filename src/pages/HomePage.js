@@ -10,106 +10,106 @@ import {
   Card,
   CardBody,
   Jumbotron,
-} from "reactstrap";
-import Fade from "react-reveal/Fade";
-import Load from "../components/Load";
-import { Link, useHistory } from "react-router-dom";
-import user from "../assets/images/user.png";
-import firstPlace from "../assets/images/firstPlace.png";
-import secondPlace from "../assets/images/secondPlace.png";
-import { useState, useEffect } from "react";
+} from 'reactstrap'
+import Fade from 'react-reveal/Fade'
+import Load from '../components/Load'
+import { Link, useHistory } from 'react-router-dom'
+import user from '../assets/images/user.png'
+import firstPlace from '../assets/images/firstPlace.png'
+import secondPlace from '../assets/images/secondPlace.png'
+import { useState, useEffect } from 'react'
 import {
   useTransition,
   animated,
   AnimatedProps,
   useSpringRef,
-} from "@react-spring/web";
-import useAudio from "../hooks/useAudio";
+} from '@react-spring/web'
+import useAudio from '../hooks/useAudio'
 
 export default function HomePage() {
   const races = [
-    "Ing. Química",
-    "Ing. Ambiental",
-    "Ing. de Materiales",
-    "Ing. Metalúrgica",
-    "Ing. de Industrias Alimentarias",
-    "Ing. de Sistemas",
-    "Ing. Eléctrica",
-    "Ing. Electrónica",
-    "Ing. Mecánica",
-    "Ing. Industrial",
-    "Ing. de Telecomunicaciones",
-    "Ing. Geofísica",
-    "Ing. Geológica",
-    "Ing. de Minas",
-    "Ing. Civil",
-    "Ing. Sanitaria",
-    "Ing. Pesquera",
-    "Ciencia de la Computación",
-    "Física",
-    "Fisioterapia",
-    "Matemáticas",
-    "Química",
-    "Biología",
-    "Ciencias de la Nutrición",
-    "Contabilidad",
-    "Finanzas",
-    "Trabajo Social",
-    "Antropología",
-    "Turismo y Hotelería",
-    "Sociología",
-    "Historia",
-    "Psicología",
-    "Relaciones Industriales",
-    "Ciencias de Comunicación",
-    "Artes",
-    "Filosofía",
-    "Literatura y Lingüística",
-    "Administración",
-    "Marketing",
-    "Gestión",
-    "Banca y Seguros",
-    "Arquitectura",
-    "Medicina",
-    "Enfermería",
-    "Agronomía",
-    "Economía",
-    "Derecho",
-    "Educación",
-    "Otro",
-  ].sort();
-  const [name, setName] = useState("");
-  const [user, setUser] = useState({});
-  const [start, setStart] = useState(false);
-  const [race, setRace] = useState("Administración");
-  const [podiumUsers, setPodiumUsers] = useState([]);
-  const history = useHistory();
+    'Ing. Química',
+    'Ing. Ambiental',
+    'Ing. de Materiales',
+    'Ing. Metalúrgica',
+    'Ing. de Industrias Alimentarias',
+    'Ing. de Sistemas',
+    'Ing. Eléctrica',
+    'Ing. Electrónica',
+    'Ing. Mecánica',
+    'Ing. Industrial',
+    'Ing. de Telecomunicaciones',
+    'Ing. Geofísica',
+    'Ing. Geológica',
+    'Ing. de Minas',
+    'Ing. Civil',
+    'Ing. Sanitaria',
+    'Ing. Pesquera',
+    'Ciencia de la Computación',
+    'Física',
+    'Fisioterapia',
+    'Matemáticas',
+    'Química',
+    'Biología',
+    'Ciencias de la Nutrición',
+    'Contabilidad',
+    'Finanzas',
+    'Trabajo Social',
+    'Antropología',
+    'Turismo y Hotelería',
+    'Sociología',
+    'Historia',
+    'Psicología',
+    'Relaciones Industriales',
+    'Ciencias de Comunicación',
+    'Artes',
+    'Filosofía',
+    'Literatura y Lingüística',
+    'Administración',
+    'Marketing',
+    'Gestión',
+    'Banca y Seguros',
+    'Arquitectura',
+    'Medicina',
+    'Enfermería',
+    'Agronomía',
+    'Economía',
+    'Derecho',
+    'Educación',
+    'Otro',
+  ].sort()
+  const [name, setName] = useState('')
+  const [user, setUser] = useState({})
+  const [start, setStart] = useState(false)
+  const [race, setRace] = useState('Administración')
+  const [podiumUsers, setPodiumUsers] = useState([])
+  const history = useHistory()
   const { play, hasInteracted } = useAudio({
-    src: "/media/button2.mp3",
+    src: '/media/button2.mp3',
     volume: 0.3,
-  });
+  })
 
   function format(time) {
     // Hours, minutes and seconds
-    var hrs = ~~(time / 3600);
-    var mins = ~~((time % 3600) / 60);
-    var secs = ~~time % 60;
+    var hrs = ~~(time / 3600)
+    var mins = ~~((time % 3600) / 60)
+    var secs = ~~time % 60
 
     // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = "";
+    var ret = ''
     if (hrs > 0) {
-      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+      ret += '' + hrs + ':' + (mins < 10 ? '0' : '')
     }
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
+    ret += '' + mins + ':' + (secs < 10 ? '0' : '')
+    ret += '' + secs
+    return ret
   }
 
   function handleSubmit(e) {
-    play();
-    e.preventDefault();
+    play()
+    e.preventDefault()
     window.icAPI.callService(
-      "registerUser",
+      'registerUser',
       {
         name,
         race,
@@ -117,28 +117,36 @@ export default function HomePage() {
       (error, response) => {
         if (!error) {
           history.push({
-            pathname: "/introduction",
+            pathname: '/introduction',
             search: `?_id=${response.responseJSON._id}`,
             state: {
               _id: response.responseJSON._id,
             },
-          });
+          })
           //setStart(true)
           //setUser(response.responseJSON)
         }
       }
-    );
+    )
   }
-
+  function secondsToString(seconds) {
+    var hour = Math.floor(seconds / 3600)
+    hour = hour < 10 ? '0' + hour : hour
+    var minute = Math.floor((seconds / 60) % 60)
+    minute = minute < 10 ? '0' + minute : minute
+    var second = seconds % 60
+    second = second < 10 ? '0' + second : second
+    return hour + ':' + minute + ':' + second
+  }
   useEffect(() => {
-    window.icAPI.callService("getPodiumUsers", {}, (error, response) => {
-      setPodiumUsers(response.responseJSON);
-    });
-  }, []);
+    window.icAPI.callService('getPodiumUsers', {}, (error, response) => {
+      setPodiumUsers(response.responseJSON)
+    })
+  }, [])
 
   if (!start) {
     return (
-      <div style={{ height: "calc(100% - 82px)" }}>
+      <div style={{ height: 'calc(100% - 82px)' }}>
         <div className="container h-100">
           <div className="row align-items-center h-100">
             <div className="col-6 col-sm-12 col-lg-6">
@@ -251,7 +259,7 @@ export default function HomePage() {
                               <div class="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
                                 <span>Tiempo record</span>
                                 <span class="mt-2 text-green-400 dark:text-green-200">
-                                  {user.time} s
+                                  {secondsToString(user.time * 1)}
                                 </span>
                               </div>
                             </div>
@@ -266,8 +274,8 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-    );
+    )
   } else {
-    return <Load userId={user._id} />;
+    return <Load userId={user._id} />
   }
 }
