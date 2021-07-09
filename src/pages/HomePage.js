@@ -15,6 +15,8 @@ import Fade from "react-reveal/Fade";
 import Load from "../components/Load";
 import { Link, useHistory } from "react-router-dom";
 import user from "../assets/images/user.png";
+import firstPlace from "../assets/images/firstPlace.png";
+import secondPlace from "../assets/images/secondPlace.png";
 import { useState, useEffect } from "react";
 import {
   useTransition,
@@ -22,6 +24,7 @@ import {
   AnimatedProps,
   useSpringRef,
 } from "@react-spring/web";
+import useAudio from "../hooks/useAudio";
 
 export default function HomePage() {
   const races = [
@@ -81,6 +84,10 @@ export default function HomePage() {
   const [race, setRace] = useState("Administración");
   const [podiumUsers, setPodiumUsers] = useState([]);
   const history = useHistory();
+  const { play, hasInteracted } = useAudio({
+    src: "/media/button.mp3",
+    volume: 0.3,
+  });
 
   function format(time) {
     // Hours, minutes and seconds
@@ -99,6 +106,7 @@ export default function HomePage() {
   }
 
   function handleSubmit(e) {
+    play();
     e.preventDefault();
     window.icAPI.callService(
       "registerUser",
@@ -204,36 +212,46 @@ export default function HomePage() {
                     <p class="text-center">Los mejores jugadores</p>
                     <div class="mt-8">
                       {podiumUsers.map((user, i) => (
-                        <div
-                          key={user._id}
-                          class="mt-8 flex px-4 py-4 justify-between bg-white dark:bg-gray-600 shadow-xl rounded-lg cursor-pointer"
-                        >
-                          <div class="flex justify-between">
-                            <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
-                              <span class=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
-                                {i + 1}
-                              </span>
-                            </div>
+                        <div className="">
+                          <div
+                            key={user._id}
+                            class={`top${i + 1} mt-8 flex ${
+                              i == 0 ? `px-3 py-3` : `px-4 py-4`
+                            } justify-between bg-white dark:bg-gray-600 shadow-xl`}
+                          >
+                            <div class="flex justify-between">
+                              <div className="rounded-full bg-yellow-400 h-12 w-12 d-flex justify-center">
+                                {i == 0 ? (
+                                  <span class=" text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
+                                    <img src={firstPlace} alt="firstPlace" />
+                                  </span>
+                                ) : (
+                                  <span class="text-4xl text-center  text-white dark:text-green-200 place-self-center font-bold">
+                                    {i + 1}
+                                  </span>
+                                )}
+                              </div>
 
-                            <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
-                              <span>Nombre</span>
-                              <span class="mt-2 text-black dark:text-gray-200">
-                                {user.name}
-                              </span>
+                              <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
+                                <span>Nombre</span>
+                                <span class="mt-2 text-black dark:text-gray-200">
+                                  {user.name}
+                                </span>
+                              </div>
+                              <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
+                                <span>Carrera</span>
+                                <span class="mt-2 text-black dark:text-gray-200">
+                                  {user.race}
+                                </span>
+                              </div>
                             </div>
-                            <div class="ml-6 flex flex-col capitalize text-gray-600 dark:text-gray-400">
-                              <span>Carrera</span>
-                              <span class="mt-2 text-black dark:text-gray-200">
-                                {user.race}
-                              </span>
-                            </div>
-                          </div>
-                          <div class="flex">
-                            <div class="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
-                              <span>Tiempo record</span>
-                              <span class="mt-2 text-green-400 dark:text-green-200">
-                                {user.time} s
-                              </span>
+                            <div class="flex">
+                              <div class="mr-8 flex flex-col capitalize text-gray-600 dark:text-gray-400">
+                                <span>Tiempo record</span>
+                                <span class="mt-2 text-green-400 dark:text-green-200">
+                                  {user.time} s
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>

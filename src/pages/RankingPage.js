@@ -1,28 +1,28 @@
-import { useState, useEffect } from 'react'
-import Fade from 'react-reveal/Fade'
+import { useState, useEffect } from "react";
+import Fade from "react-reveal/Fade";
 
 export default function RankingPage() {
-  const [userRaking, setUserRaking] = useState([])
+  const [userRaking, setUserRaking] = useState([]);
   useEffect(() => {
-    window.icAPI.callService('getAllUsers', {}, (error, response) => {
-      setUserRaking(response.responseJSON)
-      console.log(userRaking)
-    })
-  }, [])
+    window.icAPI.callService("getAllUsers", {}, (error, response) => {
+      setUserRaking(response.responseJSON);
+      console.log(userRaking);
+    });
+  }, []);
   function format(time) {
     // Hours, minutes and seconds
-    var hrs = ~~(time / 3600)
-    var mins = ~~((time % 3600) / 60)
-    var secs = ~~time % 60
+    var hrs = ~~(time / 3600);
+    var mins = ~~((time % 3600) / 60);
+    var secs = ~~time % 60;
 
     // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = ''
+    var ret = "";
     if (hrs > 0) {
-      ret += '' + hrs + ':' + (mins < 10 ? '0' : '')
+      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
     }
-    ret += '' + mins + ':' + (secs < 10 ? '0' : '')
-    ret += '' + secs
-    return ret
+    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    ret += "" + secs;
+    return ret;
   }
   return (
     <Fade bottom>
@@ -31,7 +31,7 @@ export default function RankingPage() {
           <div className="col-12">
             <div
               className="p-6 mb-3 mt-3 rounded-lg shadow-lg bg-gradient-to-r from-yellow-800 to-yellow-400"
-              style={{ height: '55%', minHeight: '400px', overflow: 'auto' }}
+              style={{ height: "55%", overflow: "auto" }}
             >
               <h2 className="text-2xl text-center font-bold mb-2 ">Ranking</h2>
               <p className="text-center">Los mejores jugadores</p>
@@ -77,5 +77,5 @@ export default function RankingPage() {
         </div>
       </div>
     </Fade>
-  )
+  );
 }

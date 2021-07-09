@@ -2,10 +2,177 @@
 @tailwind components;
 @tailwind utilities;
 
-html,body{
-	overflow: hidden;
-	height: 100%;
-	width: 100%;
+html,
+body {
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+}
+
+:root {
+  --color-first: #65587f;
+  --color-second: #f18867;
+  --color-third: #e85f99;
+  --color-forth: #50bda1;
+  --block-width: 300px;
+  --block-height: 270px;
+  --border-width: 0.625rem;
+  --border-radius-outer: 8px;
+  --border-radius-inner: calc(var(--border-radius-outer) / 2);
+  --font-plain: "IBM Plex Sans", sans-serif;
+  --font-special: "Fredoka One", sans-serif;
+  box-sizing: border-box;
+  line-height: 1.4;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background: #f2f2f2;
+  color: #5e5e5e;
+  font-family: var(--font-plain);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rainbow {
+  width: 100%;
+  height: 100%;
+  -webkit-animation: o-rotate-360 linear 8s infinite;
+  animation: o-rotate-360 linear 8s infinite;
+}
+.rainbow span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform: translate(-50%, -50%);
+}
+.rainbow span:after {
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 100%;
+}
+.rainbow span:first-child {
+  background: var(--color-first);
+}
+.rainbow span:first-child:after {
+  background: var(--color-second);
+}
+.rainbow span:last-child {
+  background: var(--color-third);
+}
+.rainbow span:last-child:after {
+  background: var(--color-forth);
+}
+
+.top1 {
+  border: 10px solid black;
+  background: #ffd73e33;
+  border-image: url("data:image/svg+xml;charset=utf-8,%3Csvg width='100' height='100' viewBox='0 0 100 100' fill='none' xmlns='http://www.w3.org/2000/svg'%3E %3Cstyle%3Epath%7Banimation:stroke 5s infinite linear%3B%7D%40keyframes stroke%7Bto%7Bstroke-dashoffset:776%3B%7D%7D%3C/style%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='0%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%232d3561' /%3E%3Cstop offset='25%25' stop-color='%23c05c7e' /%3E%3Cstop offset='50%25' stop-color='%23f3826f' /%3E%3Cstop offset='100%25' stop-color='%23ffb961' /%3E%3C/linearGradient%3E %3Cpath d='M1.5 1.5 l97 0l0 97l-97 0 l0 -97' stroke-linecap='square' stroke='url(%23g)' stroke-width='3' stroke-dasharray='388'/%3E %3C/svg%3E")
+    1;
+}
+
+.c-subscribe-box {
+  width: var(--block-width);
+  height: var(--block-height);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 40px -10px rgba(0, 64, 128, 0.2);
+  border-radius: var(--border-radius-outer);
+}
+.c-subscribe-box__wrapper {
+  width: calc(100% - var(--border-width));
+  height: calc(100% - var(--border-width));
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 1.2rem 1rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--border-radius-inner);
+}
+.c-subscribe-box__title {
+  font-size: 1.6rem;
+}
+.c-subscribe-box__desc {
+  font-size: 0.935rem;
+  margin: 0.7rem auto 1.8rem;
+  max-width: 240px;
+}
+.c-subscribe-box__form {
+  margin-top: auto;
+}
+
+.c-form--accent input:hover,
+.c-form--accent input:active,
+.c-form--accent input:focus {
+  border-color: var(--color-third);
+  box-shadow: 0 0 0 3px rgba(232, 94, 152, 0.25);
+}
+.c-form--accent [type="submit"] {
+  background: var(--color-third);
+  border-color: var(--color-third);
+  color: #fff;
+}
+
+@-webkit-keyframes o-rotate-360 {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes o-rotate-360 {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+[type="submit"] {
+  margin-bottom: 0;
+  font-family: var(--font-special);
+  font-weight: normal;
+  letter-spacing: 0.015em;
+  font-size: 1.1rem;
+}
+[type="submit"]:active {
+  transform: scale(0.97);
+}
+
+input {
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+  font-size: 93%;
+  transition: all 300ms ease;
+}
+
+h3 {
+  margin: 0;
+  letter-spacing: -0.015em;
+  font-family: var(--font-special);
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.u-align-center {
+  text-align: center;
 }
 
 #outer {
@@ -17,387 +184,427 @@ html,body{
 }
 
 .content {
-	z-index: 1000;
-	position: relative;
-	height: 100%;
-
+  z-index: 1000;
+  position: relative;
+  height: 100%;
 }
-.fondo{
-	position: absolute;
-	top: 0px;
-	left: 0px;
-	background: #A3D6DB;
-	width: 100%;
-	height: 100%;
-	animation-name: fondo;
-	animation-duration: 20s;
-	animation-iteration-count: infinite;
-
+.fondo {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #a3d6db;
+  width: 100%;
+  height: 100%;
+  animation-name: fondo;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
 }
-.sol{ 
-	background: #FFA500;
-	width: 100px;
-	height: 100px;
-	position: absolute;
-	left: -110px;
-	top: 30%;
-	border-radius: 100px;
-	box-shadow: 0px 0px 0px 10px rgba(255,140,0,0.5);
-	animation-name: sol;
-	animation-duration: 20s;
-	animation-iteration-count:infinite;
+.sol {
+  background: #ffa500;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  left: -110px;
+  top: 30%;
+  border-radius: 100px;
+  box-shadow: 0px 0px 0px 10px rgba(255, 140, 0, 0.5);
+  animation-name: sol;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;
 }
 
-.nubes{
-	background-image: url(./assets/images/fondo1.png);
-	background-repeat: repeat-x;
-	position: absolute; 
-	top: 10%;
-	left: 0px;
-	width: 100%;
-	height: 174px;	
-	animation-name: nubes;
-	animation-duration: 10s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
-
+.nubes {
+  background-image: url(./assets/images/fondo1.png);
+  background-repeat: repeat-x;
+  position: absolute;
+  top: 10%;
+  left: 0px;
+  width: 100%;
+  height: 174px;
+  animation-name: nubes;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.ciudad{
-	background-image: url(./assets/images/ciudad.png);
-	background-repeat: repeat-x;
-	background-position: 0px 100%;
-	position: absolute; 
-	top: 10%;
-	left: 0px;
-	width: 100%;
-	height: 90%;	
-	animation-name: ciudad;
-	animation-duration: 30s;
-	animation-timing-function: linear;
-	animation-iteration-count: infinite;
+.ciudad {
+  background-image: url(./assets/images/ciudad.png);
+  background-repeat: repeat-x;
+  background-position: 0px 100%;
+  position: absolute;
+  top: 10%;
+  left: 0px;
+  width: 100%;
+  height: 90%;
+  animation-name: ciudad;
+  animation-duration: 30s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.bici{ 
-	width: 145px; 
-	height: 80px;
-	position: absolute;
-	bottom: 9%;
-	left: 50%;
-	text-align: center;
+.bici {
+  width: 145px;
+  height: 80px;
+  position: absolute;
+  bottom: 9%;
+  left: 50%;
+  text-align: center;
 }
 
-.bici .marco{ 
-	background-image: url(./assets/images/marcobici.png);
-	width: 98px;
-	height: 56px;
-	display: inline-block;
-	z-index: 2;
-	position: relative;
+.bici .marco {
+  background-image: url(./assets/images/marcobici.png);
+  width: 98px;
+  height: 56px;
+  display: inline-block;
+  z-index: 2;
+  position: relative;
 }
 
-.bici .llanta{ 
-	background-image: url(./assets/images/llanta.png);
-	width: 55px;
-	height: 56px;
-	display: inline-block;
-	position: absolute;
-	animation-name: llantas;
-	animation-duration: 1s;
-	animation-iteration-count: infinite;
- 
+.bici .llanta {
+  background-image: url(./assets/images/llanta.png);
+  width: 55px;
+  height: 56px;
+  display: inline-block;
+  position: absolute;
+  animation-name: llantas;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
 }
-.bici .llanta.llan1{
-	top: 27px;
-	left: 0px;
-	z-index: 0;
+.bici .llanta.llan1 {
+  top: 27px;
+  left: 0px;
+  z-index: 0;
 }
-.bici .llanta.llan2{
-	top: 30px;
-	right: 0px;
-	z-index: 4;
-}
-
-@keyframes sol{
-	0%{ left: -110px; top: 30%; }
-	50%{ left: 50%; top: 5%; background: #FF4500; }
-	100%{ left: calc(100% + 10px); top: 30%; background: #bee2e6; box-shadow: 0px 0px 0px 10px rgba(73,92,95,0.5); }
+.bici .llanta.llan2 {
+  top: 30px;
+  right: 0px;
+  z-index: 4;
 }
 
-@keyframes fondo{
-	50%{ background: #A3D6DB; }
-	100%{ background: #103D42; }
+@keyframes sol {
+  0% {
+    left: -110px;
+    top: 30%;
+  }
+  50% {
+    left: 50%;
+    top: 5%;
+    background: #ff4500;
+  }
+  100% {
+    left: calc(100% + 10px);
+    top: 30%;
+    background: #bee2e6;
+    box-shadow: 0px 0px 0px 10px rgba(73, 92, 95, 0.5);
+  }
 }
 
-@keyframes nubes{
-	from{ background-position: 0 0; }
-	to{ background-position: 100% 0; }
-}
-@keyframes ciudad{
-	from{ background-position: 0 100%; }
-	to{ background-position: 100% 100%; }
-}
-
-@keyframes llantas{
-	from{ transform: rotate(0deg); }
-	to{ transform: rotate(360deg); }
+@keyframes fondo {
+  50% {
+    background: #a3d6db;
+  }
+  100% {
+    background: #103d42;
+  }
 }
 
-
-#pause:checked ~ .sol{
-	animation-name: sol;
-	animation-play-state: paused;
+@keyframes nubes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+@keyframes ciudad {
+  from {
+    background-position: 0 100%;
+  }
+  to {
+    background-position: 100% 100%;
+  }
 }
 
-#pause:checked ~ .fondo{
-	animation-name: fondo;
-	animation-play-state: paused;
-}
-#pause:checked ~ .nubes{
-	animation-name: nubes;
-	animation-play-state: paused;
-}
-#pause:checked ~ .ciudad{
-	animation-name: ciudad;
-	animation-play-state: paused;
-}
-#pause:checked ~ .bici .llanta{
-	animation-name: llantas;
-	animation-play-state: paused;
+@keyframes llantas {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
-
-#play:checked ~ .sol{
-	animation-name: sol;
-	animation-play-state: running;
+#pause:checked ~ .sol {
+  animation-name: sol;
+  animation-play-state: paused;
 }
 
-#play:checked ~ .fondo{
-	animation-name: fondo;
-	animation-play-state: running;
+#pause:checked ~ .fondo {
+  animation-name: fondo;
+  animation-play-state: paused;
 }
-#play:checked ~ .nubes{
-	animation-name: nubes;
-	animation-play-state: running;
+#pause:checked ~ .nubes {
+  animation-name: nubes;
+  animation-play-state: paused;
 }
-#play:checked ~ .ciudad{
-	animation-name: ciudad;
-	animation-play-state: running;
+#pause:checked ~ .ciudad {
+  animation-name: ciudad;
+  animation-play-state: paused;
 }
-#play:checked ~ .bici .llanta{
-	animation-name: llantas;
-	animation-play-state: running;
-}
-
-#stop:checked ~ .sol{
-	animation-name: stopSol;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+#pause:checked ~ .bici .llanta {
+  animation-name: llantas;
+  animation-play-state: paused;
 }
 
-#stop:checked ~ .fondo{
-	animation-name: stopFondo;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
-}
-#stop:checked ~ .nubes{
-	animation-name: stopNubes;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+#play:checked ~ .sol {
+  animation-name: sol;
+  animation-play-state: running;
 }
 
-#stop:checked ~ .ciudad{
-	animation-name: stopCiudad;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+#play:checked ~ .fondo {
+  animation-name: fondo;
+  animation-play-state: running;
+}
+#play:checked ~ .nubes {
+  animation-name: nubes;
+  animation-play-state: running;
+}
+#play:checked ~ .ciudad {
+  animation-name: ciudad;
+  animation-play-state: running;
+}
+#play:checked ~ .bici .llanta {
+  animation-name: llantas;
+  animation-play-state: running;
 }
 
-#stop:checked ~ .bici .llanta{
-	animation-name: stopLlantas;
-	animation-iteration-count: 1;
-	animation-fill-mode: forwards;
+#stop:checked ~ .sol {
+  animation-name: stopSol;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
+#stop:checked ~ .fondo {
+  animation-name: stopFondo;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+#stop:checked ~ .nubes {
+  animation-name: stopNubes;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
 
-@keyframes stopNubes{
-	from{ background-position: 0 0; }
-	to{ background-position: 0 0; }
-}
-@keyframes stopFondo{
-	from{ background: #A3D6DB; }
-	to{ background: #A3D6DB; }
+#stop:checked ~ .ciudad {
+  animation-name: stopCiudad;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
 
-@keyframes stopSol{
-	from{ left: -110px; }
-	to{ left: -110px; }
+#stop:checked ~ .bici .llanta {
+  animation-name: stopLlantas;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }
-@keyframes stopCiudad{
-	from{ background-position: 0 100%; }
-	to{ background-position: 0 100%; }
+
+@keyframes stopNubes {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 0 0;
+  }
 }
-@keyframes stopLlantas{
-	from{ transform: rotate(0deg); }
-	to{ transform: rotate(0deg); }
+@keyframes stopFondo {
+  from {
+    background: #a3d6db;
+  }
+  to {
+    background: #a3d6db;
+  }
 }
-   
+
+@keyframes stopSol {
+  from {
+    left: -110px;
+  }
+  to {
+    left: -110px;
+  }
+}
+@keyframes stopCiudad {
+  from {
+    background-position: 0 100%;
+  }
+  to {
+    background-position: 0 100%;
+  }
+}
+@keyframes stopLlantas {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
 .componentWrapper {
-    border: 2px solid black;
-    padding: 15px 10px 10px;
-    width: 65%;
-    border-radius: 5px;
+  border: 2px solid black;
+  padding: 15px 10px 10px;
+  width: 65%;
+  border-radius: 5px;
 }
 
 .componentWrapper .header {
-    position:absolute;
-    margin-top:-30px;
-    margin-left:10px;
-    color:black;
-    background:white;
-    padding:2px 5px;
+  position: absolute;
+  margin-top: -30px;
+  margin-left: 10px;
+  color: black;
+  background: white;
+  padding: 2px 5px;
 }
-.input-register{
-    border: 2px solid black;
-    border-radius: 5px;
-    margin: 5px;
-    padding: 5px;
+.input-register {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
 }
 
-.members{
-    border-top: 2px solid black;
-    margin-top: 20px;
-    padding-top: 20px;
-    padding-left: 100px;
+.members {
+  border-top: 2px solid black;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-left: 100px;
 }
-.border-button{
-    box-shadow: 5px 10px #888888;
+.border-button {
+  box-shadow: 5px 10px #888888;
 }
-.introduction{
-    margin: auto 20%;
+.introduction {
+  margin: auto 20%;
 }
-.padding-objetive{
-    padding-top: 70px;
+.padding-objetive {
+  padding-top: 70px;
 }
-.padding-introduction{
-    padding-top: 145px;
+.padding-introduction {
+  padding-top: 145px;
 }
-.game{
-	background-color: #111;
-	border: 3px solid #ec0b36;
-	border-radius: 20px;
-	padding: 5% 0;
-	margin: 0 10%;
+.game {
+  background-color: #111;
+  border: 3px solid #ec0b36;
+  border-radius: 20px;
+  padding: 5% 0;
+  margin: 0 10%;
 }
 .content-game {
-	z-index: 1000;
-	position: relative;
-	margin-top: 3%;
+  z-index: 1000;
+  position: relative;
+  margin-top: 3%;
 }
 
-.button-pixel{
-	position: relative;
-	width: 180px;
-	height: 60px;
-	color: #fff;
-	text-decoration: none;
-	text-transform: uppercase;
-	text-align: center;
-	line-height: 60px;
-	letter-spacing: 2px;
-	margin: 20px;
-	transition: 0.5s;
-	border-color: #ec0b36 !important;
-	background-color: #111 !important;
+.button-pixel {
+  position: relative;
+  width: 180px;
+  height: 60px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 60px;
+  letter-spacing: 2px;
+  margin: 20px;
+  transition: 0.5s;
+  border-color: #ec0b36 !important;
+  background-color: #111 !important;
 }
-.button-pixel:hover{
-	background: #ec0b36 url(./assets/images/pixel.png);
-	transition-delay: 0.8s;
-	background-size: 180px;
-	animation: animate 0.8s steps(8) forwards ;
-	border-color: #ec0b36 !important;
-	color: #fff;
+.button-pixel:hover {
+  background: #ec0b36 url(./assets/images/pixel.png);
+  transition-delay: 0.8s;
+  background-size: 180px;
+  animation: animate 0.8s steps(8) forwards;
+  border-color: #ec0b36 !important;
+  color: #fff;
 }
-.button-pixel:focus{
-	outline: none !important;
-	border-color: #ec0b36 !important;
-	box-shadow: none !important;
+.button-pixel:focus {
+  outline: none !important;
+  border-color: #ec0b36 !important;
+  box-shadow: none !important;
 }
-input[type='radio']:checked {
-  	background-color: #ec0b36 !important;
-}
-
-input[type='radio']:after {
-	background: #111 !important;
+input[type="radio"]:checked {
+  background-color: #ec0b36 !important;
 }
 
-input[type='radio']:focus {
-	outline: none !important;
-	border-color: #ec0b36 !important;
-	box-shadow: none !important;
+input[type="radio"]:after {
+  background: #111 !important;
+}
+
+input[type="radio"]:focus {
+  outline: none !important;
+  border-color: #ec0b36 !important;
+  box-shadow: none !important;
 }
 
 @keyframes animate {
-	0% {
-		background-position-y: 0;
-	}
-	100%
-	{
-		background-position-y: -480px;
-	}
+  0% {
+    background-position-y: 0;
+  }
+  100% {
+    background-position-y: -480px;
+  }
 }
 
-.content-final-message{
-	font-family: consolas;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.content-final-message {
+  font-family: consolas;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.wavy{
-	position: relative;
-	-webkit-box-reflect: below -12px linear-gradient(transparent, rgb(0, 0, 0,0.2));
+.wavy {
+  position: relative;
+  -webkit-box-reflect: below -12px linear-gradient(transparent, rgb(0, 0, 0, 0.2));
 }
-.wavy span{
-	position: relative;
-	display: inline-block;
-	color: #fff;
-	font-size: 2em;
-	text-transform: uppercase;
-	animation: animatetext 1s ease-in-out infinite;
-	animation-delay: calc(0.1s * var(--i));
-	font-size: 100px;
+.wavy span {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-size: 2em;
+  text-transform: uppercase;
+  animation: animatetext 1s ease-in-out infinite;
+  animation-delay: calc(0.1s * var(--i));
+  font-size: 100px;
 }
 
-
-.leter1{
-	--i:1
+.leter1 {
+  --i: 1;
 }
-.leter2{
-	--i:2
+.leter2 {
+  --i: 2;
 }
-.leter3{
-	--i:3
+.leter3 {
+  --i: 3;
 }
-.leter4{
-	--i:4
+.leter4 {
+  --i: 4;
 }
-.leter5{
-	--i:5
+.leter5 {
+  --i: 5;
 }
-.leter6{
-	--i:6
+.leter6 {
+  --i: 6;
 }
-.leter7{
-	--i:7
+.leter7 {
+  --i: 7;
 }
 
 @keyframes animatetext {
-	0%{
-		transform: translateY(0px);
-	}
-	20%{
-		transform: translateY(-20px);
-	}
-	40%,100%{
-		transform: translateY(0px);
-	}
+  0% {
+    transform: translateY(0px);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+  40%,
+  100% {
+    transform: translateY(0px);
+  }
 }
