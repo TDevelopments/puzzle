@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom'
-import { Row, Col, Button } from 'reactstrap'
+import { Link } from "react-router-dom";
+import { Row, Col, Button } from "reactstrap";
 
 //import '../assets/css/plugin.css'
-import '../assets/css/responsive.css'
-import '../assets/css/style.css'
+import "../assets/css/responsive.css";
+import "../assets/css/style.css";
+import logo from "../assets/images/fisioterapia.png";
 
 export default function Navbar() {
   return (
@@ -87,6 +88,9 @@ export default function Navbar() {
                   >
                     EMPEZAR
                   </Link>
+                  <div className="rounded-lg shadow-lg bg-white ml-4">
+                    <img alt="logo" width="60px" src={logo} />
+                  </div>
                 </div>
               </nav>
             </div>
@@ -116,5 +120,5 @@ export default function Navbar() {
     </nav>
       */}
     </header>
-  )
+  );
 }
